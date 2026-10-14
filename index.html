@@ -4,7 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dicas de Culinária Prática - Acessível</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========================================== */
+        /*   ESTILOS GERAIS DA PÁGINA               */
+        /* ========================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 22px;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ff9ac4;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #ff1088;
+            color: #ffffff;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            font-size: 24px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Estilo Base dos Cards da Página Inicial */
+        .card-dica {
+            background-color: #ffffff;
+            border: 3px solid #ff1190;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-dica:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-card {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .link-saiba-mais {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ff1088;
+            text-decoration: underline;
+            font-size: 22px;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #f71390;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff1573;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #d81b60;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            padding-left: 30px;
+            margin-top: 15px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .destaque {
+            background-color: #fff3cd;
+            border-left: 6px solid #74f20c;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 20px;
+            border-radius: 4px;
+        }
+
+        .botao-grande {
+            display: block;
+            width: 100%;
+            background-color: #2e7d32;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .botao-grande:hover, .botao-grande:focus {
+            background-color: #1b5e20;
+            outline: 4px solid #ffbf00;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            background-color: #ff1088;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-voltar:hover {
+            background-color: #d81b60;
+        }
+
+        /* Estilos das Ilustrações (SVG) */
+        .container-figura {
+            text-align: center;
+            margin: 25px 0;
+            background-color: #fff8fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px dashed #ff9ac4;
+        }
+
+        .container-figura svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .legenda-figura {
+            font-size: 18px;
+            font-style: italic;
+            color: #555555;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 20px;
+            color: #4a4a4a;
+        }
+
+        /* ========================================== */
+        /*   LÓGICA DAS PÁGINAS SECUNDÁRIAS (SPA CSS) */
+        /* ========================================== */
+
+        /* Oculta as páginas secundárias por padrão */
+        .pagina-secundaria {
+            display: none;
+            background-color: #ffffff;
+            border: 4px solid #ff1088;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Quando a página for chamada via link (ex: #organizacao) */
+        .pagina-secundaria:target {
+            display: block;
+        }
+
+        /* Oculta a listagem inicial e o topo quando uma página secundária estiver ativa */
+        body:has(.pagina-secundaria:target) #pagina-inicial {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,58 +211,171 @@
     </header>
 
     <main role="main">
-        
-        <!-- Fundo escuro cobrindo a tela (Backdrop) -->
-        <a href="#" class="backdrop" aria-hidden="true"></a>
 
-        <!-- Card 1 -->
-        <section class="card-dica" id="card-1">
-            <a href="#card-1" class="link-card">
-                <h2>1. Organização Sem Esforço (Mise en Place)</h2>
-            </a>
-            <a href="#" class="btn-fechar" title="Fechar modal">&times; Fechar</a>
-            <p>Antes de ligar o fogão, separe todos os ingredientes e utensílios que vai usar sobre a bancada.</p>
-            <ul>
-                <li>Lave e corte os vegetais com antecedência.</li>
-                <li>Utilize potes pequenos para deixar os temperos medidos.</li>
-                <li>Isso evita ter que correr ou se abaixar com o fogo aceso.</li>
-            </ul>
-        </section>
+        <!-- ======================================================== -->
+        /* PÁGINA INICIAL / LISTAGEM DOS CARDS */
+        <!-- ======================================================== -->
+        <div id="pagina-inicial">
 
-        <!-- Card 2 -->
-        <section class="card-dica" id="card-2">
-            <a href="#card-2" class="link-card">
-                <h2>2. Segurança em Primeiro Lugar</h2>
-            </a>
-            <a href="#" class="btn-fechar" title="Fechar modal">&times; Fechar</a>
-            <p>Pequenos cuidados evitam acidentes e tornam o momento do preparo mais relaxante:</p>
-            <ol>
-                <li><strong>Cabo da panela:</strong> Vire sempre o cabo das panelas para o lado de dentro do fogão.</li>
-                <li><strong>Tábua firme:</strong> Coloque um pano de prato úmido debaixo da tábua de cortar para ela não escorregar.</li>
-                <li><strong>Iluminação:</strong> Mantenha a bancada de corte sempre muito bem iluminada.</li>
-            </ol>
-        </section>
+            <!-- Card 1 -->
+            <section class="card-dica">
+                <a href="#organizacao" class="link-card">
+                    <h2>🥣 1. Organização Sem Esforço (Mise en Place)</h2>
+                    <p>Antes de ligar o fogão, separe todos os ingredientes e utensílios que vai usar sobre a bancada.</p>
+                    <ul>
+                        <li>Lave e corte os vegetais com antecedência.</li>
+                        <li>Utilize potes pequenos para deixar os temperos medidos.</li>
+                        <li>Isso evita ter que correr ou se abaixar com o fogo aceso.</li>
+                    </ul>
+                    <div class="link-saiba-mais">Clique para aprofundar este tema ➔</div>
+                </a>
+            </section>
 
-        <!-- Card 3 -->
-        <section class="card-dica" id="card-3">
-            <a href="#card-3" class="link-card">
-                <h2>3. Utensílios Acessíveis</h2>
-            </a>
-            <a href="#" class="btn-fechar" title="Fechar modal">&times; Fechar</a>
-            <p>Substitua ferramentas pesadas ou difíceis de manusear por opções mais confortáveis:</p>
-            <ul>
-                <li>Prefira descascadores de legumes com cabo emborrachado e grosso.</li>
-                <li>Use panelas com duas alças laterais para distribuir o peso ao carregar.</li>
-                <li>Dê preferência a potes plásticos leves e com tampas fáceis de abrir.</li>
-            </ul>
-            <div class="destaque">
-                💡 <strong>Dica de Ouro:</strong> Evite erguer panelas pesadas com água quente; use uma escumadeira para retirar os alimentos prontos.
+            <!-- Card 2 -->
+            <section class="card-dica">
+                <a href="#seguranca" class="link-card">
+                    <h2>🍳 2. Segurança em Primeiro Lugar</h2>
+                    <p>Pequenos cuidados evitam acidentes e tornam o momento do preparo mais relaxante:</p>
+                    <ol>
+                        <li><strong>Cabo da panela:</strong> Vire sempre o cabo das panelas para o lado de dentro do fogão.</li>
+                        <li><strong>Tábua firme:</strong> Coloque um pano de prato úmido debaixo da tábua de cortar para ela não escorregar.</li>
+                        <li><strong>Iluminação:</strong> Mantenha a bancada de corte sempre muito bem iluminada.</li>
+                    </ol>
+                    <div class="link-saiba-mais">Clique para aprofundar este tema ➔</div>
+                </a>
+            </section>
+
+            <!-- Card 3 -->
+            <section class="card-dica">
+                <a href="#utensilios" class="link-card">
+                    <h2>🥘 3. Utensílios Acessíveis</h2>
+                    <p>Substitua ferramentas pesadas ou difíceis de manusear por opções mais confortáveis:</p>
+                    <ul>
+                        <li>Prefira descascadores de legumes com cabo emborrachado e grosso.</li>
+                        <li>Use panelas com duas alças laterais para distribuir o peso ao carregar.</li>
+                        <li>Dê preferência a formas de silicone e potes plásticos leves.</li>
+                    </ul>
+                    <div class="destaque">
+                        💡 <strong>Dica de Ouro:</strong> Evite erguer panelas pesadas com água quente; use uma escumadeira para retirar os alimentos prontos.
+                    </div>
+                    <div class="link-saiba-mais">Clique para aprofundar este tema ➔</div>
+                </a>
+            </section>
+
+            <button type="button" class="botao-grande" onclick="window.print()">
+                🖨️ Imprimir estas dicas em tamanho grande
+            </button>
+
+        </div>
+
+        <!-- ======================================================== -->
+        /* PÁGINA SECUNDÁRIA 1: ORGANIZAÇÃO */
+        <!-- ======================================================== -->
+        <article class="pagina-secundaria" id="organizacao">
+            <a href="#" class="btn-voltar">⬅️ Voltar à Página Principal</a>
+
+            <h2>🥣 1. Organização Sem Esforço (Mise en Place)</h2>
+            <p>O termo francês <em>Mise en Place</em> significa "colocar no lugar". Na prática, significa preparar e organizar tudo o que você vai precisar antes mesmo de acender a primeira chama do fogão.</p>
+
+            <div class="container-figura">
+                <svg width="180" height="180" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de colher e tigela de cozinha">
+                    <circle cx="100" cy="100" r="90" fill="#fff3cd" stroke="#f71390" stroke-width="4"/>
+                    <path d="M 50 100 A 50 50 0 0 0 150 100 Z" fill="#ff1088"/>
+                    <rect x="45" y="92" width="110" height="10" rx="5" fill="#f71390"/>
+                    <path d="M 120 40 C 105 40 105 65 120 70 L 165 145 C 168 150 175 145 170 140 L 128 65 C 135 60 135 40 120 40 Z" fill="#d97706"/>
+                </svg>
+                <p class="legenda-figura">Separe e meça seus ingredientes em potes pequenos com antecedência.</p>
             </div>
-        </section>
 
-        <button type="button" class="botao-grande" onclick="window.print()">
-            🖨️ Imprimir estas dicas em tamanho grande
-        </button>
+            <h3>Por que a organização previne acidentes?</h3>
+            <p>Muitos pequenos acidentes na cozinha ocorrem quando tentamos procurar um tempero ou picar um legume enquanto o óleo já está quente na panela ou o alho está queimando. A pressa gera distrações e movimentos bruscos.</p>
+
+            <h3>Guia Passo a Passo para uma Preparação Tranquila:</h3>
+            <ul>
+                <li><strong>🥣 Potes e Tigelas Pequenas:</strong> Deixe o alho picado, a cebola, o sal e as ervas medidos em pequenos recipientes de silicone ou plástico leve.</li>
+                <li><strong>🥄 Colheres de Medida ao Alcance:</strong> Mantenha colheres de pau e espátulas posicionadas do lado dominante da sua bancada.</li>
+                <li><strong>🗑️ Lixo de Bancada:</strong> Coloque uma pequena tigela sobre a mesa exclusiva para jogar cascas, talos e embalagens. Isso evita caminhadas desnecessárias até a lixeira principal.</li>
+                <li><strong>🪑 Trabalhe Confortavelmente:</strong> Se necessário, faça todo o trabalho de descascar e picar sentado em uma cadeira confortável antes de ir para a frente do fogão.</li>
+            </ul>
+
+            <div class="destaque">
+                💡 <strong>Dica Prática:</strong> Colher de pau e colheres de silicone não esquentam o cabo durante o uso, sendo muito mais seguras para manusear molhos quentes.
+            </div>
+
+            <a href="#" class="botao-grande">⬅️ Voltar para o Início</a>
+        </article>
+
+        <!-- ======================================================== -->
+        /* PÁGINA SECUNDÁRIA 2: SEGURANÇA */
+        <!-- ======================================================== -->
+        <article class="pagina-secundaria" id="seguranca">
+            <a href="#" class="btn-voltar">⬅️ Voltar à Página Principal</a>
+
+            <h2>🍳 2. Segurança em Primeiro Lugar</h2>
+            <p>A cozinha é um espaço de criatividade e prazer, mas exige atenção redobrada com superfícies quentes, objetos cortantes e movimentação física.</p>
+
+            <div class="container-figura">
+                <svg width="180" height="180" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de panela segura no fogão">
+                    <circle cx="100" cy="100" r="90" fill="#fff3cd" stroke="#f71390" stroke-width="4"/>
+                    <rect x="55" y="85" width="90" height="55" rx="8" fill="#4b5563"/>
+                    <rect x="50" y="75" width="100" height="12" rx="4" fill="#374151"/>
+                    <rect x="145" y="80" width="40" height="10" rx="5" fill="#111827"/>
+                    <path d="M 60 75 Q 100 50 140 75 Z" fill="#6b7280"/>
+                    <circle cx="100" cy="55" r="7" fill="#111827"/>
+                </svg>
+                <p class="legenda-figura">Cabos de panelas devem sempre estar voltados para o centro do fogão.</p>
+            </div>
+
+            <h3>Regras de Ouro de Segurança:</h3>
+            <ol>
+                <li><strong>🍳 Posicionamento dos Cabos:</strong> Nunca deixe o cabo da panela voltado para fora da borda do fogão. Esbarrar no cabo é uma das causas mais comuns de queimaduras severas.</li>
+                <li><strong>🔪 Estabilidade na Tábua:</strong> Coloque um pano de prato levemente úmido ou uma esteira antiderrapante embaixo da sua tábua de corte. Isso trava a tábua e impede que ela escorregue enquanto você usa a faca.</li>
+                <li><strong>🧤 Proteção Térmica Adequada:</strong> Prefira luvas térmicas de silicone ou tecido grosso em vez de panos de prato dobrados, que podem escorregar das mãos ao segurar assadeiras quentes.</li>
+                <li><strong>💡 Iluminação Focada:</strong> Certifique-se de que a iluminação acima da sua pia e do seu fogão não projete sombras no local onde você manuseia lâminas.</li>
+            </ol>
+
+            <div class="destaque">
+                ⚠️ <strong>Atenção com Roupas:</strong> Evite cozinhar usando blusas com mangas muito largas ou soltas, pois elas podem encostar nas bocas acesas do fogão sem você perceber.
+            </div>
+
+            <a href="#" class="botao-grande">⬅️ Voltar para o Início</a>
+        </article>
+
+        <!-- ======================================================== -->
+        /* PÁGINA SECUNDÁRIA 3: UTENSÍLIOS */
+        <!-- ======================================================== -->
+        <article class="pagina-secundaria" id="utensilios">
+            <a href="#" class="btn-voltar">⬅️ Voltar à Página Principal</a>
+
+            <h2>🥘 3. Utensílios Acessíveis e Leves</h2>
+            <p>Adequar as ferramentas da sua cozinha ao seu conforto físico reduz o esforço nas articulações das mãos, braços e coluna, tornando o ato de cozinhar leve e prazeroso.</p>
+
+            <div class="container-figura">
+                <svg width="180" height="180" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de forma de cozinha e utensílios ergonomicos">
+                    <circle cx="100" cy="100" r="90" fill="#fff3cd" stroke="#f71390" stroke-width="4"/>
+                    <ellipse cx="100" cy="115" rx="55" ry="25" fill="#f71390"/>
+                    <ellipse cx="100" cy="108" rx="55" ry="25" fill="#ff1088"/>
+                    <ellipse cx="100" cy="108" rx="20" ry="9" fill="#fff3cd"/>
+                    <rect x="85" y="35" width="30" height="40" rx="6" fill="#2e7d32"/>
+                    <path d="M 90 35 L 90 20 L 110 20 L 110 35 Z" fill="#9ca3af" stroke="#4b5563" stroke-width="2"/>
+                </svg>
+                <p class="legenda-figura">Formas leves de silicone e cabos emborrachados facilitam o Manuseio.</p>
+            </div>
+
+            <h3>Recomendações de Utensílios Recomendados:</h3>
+            <ul>
+                <li><strong>🍰 Formas de Silicone e Alumínio Leve:</strong> Substitua travessas pesadas de vidro temperado ou cerâmica por formas de silicone flexíveis ou alumínio antiaderente leve, reduzindo drasticamente o peso na hora de colocar e tirar do forno.</li>
+                <li><strong>🥘 Panelas de Duas Alças:</strong> Prefira caçarolas com duas alças laterais largas em vez de panelas com cabo único comprido. Isso permite distribuir o peso igualmente entre as duas mãos ao levantar.</li>
+                <li><strong>🔪 Descascadores Ergonomicos em "Y":</strong> Possuem cabos bem grossos e emborrachados, exigindo muito menos força no aperto dos dedos em comparação aos facões tradicionais.</li>
+                <li><strong>🥫 Abridores Automáticos ou de Alavanca:</strong> Facilitam a abertura de potes de vidro sem forçar os pulsos.</li>
+            </ul>
+
+            <div class="destaque">
+                💡 <strong>Dica de Ouro:</strong> Para escorrer macarrão ou legumes quentes, utilize uma escumadeira de silicone para retirar o alimento da panela direto para o prato. Assim, você não precisa carregar a panela cheia de água fervente até a pia!
+            </div>
+
+            <a href="#" class="botao-grande">⬅️ Voltar para o Início</a>
+        </article>
 
     </main>
 
