@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dicas de Culinária Prática - Acessível</title>
+    <!-- Fonte alegre e amigável -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         /* ========================================== */
-        /*   ESTILOS GERAIS DA PÁGINA               */
+        /*   VARIÁVEIS E CORES ALEGRES               */
         /* ========================================== */
+        :root {
+            --cor-primaria: #ff5964;      /* Coral Alegre */
+            --cor-secundaria: #ffb703;    /* Amarelo Solar */
+            --cor-terciaria: #35a7ff;     /* Azul Divertido */
+            --cor-verde: #06d6a0;         /* Menta Vibrante */
+            --cor-fundo: #fff9e6;         /* Creme Suave */
+            --cor-texto: #2b2d42;         /* Grafite */
+            --cor-card-bg: #ffffff;
+            --raio-borda: 24px;
+            --sombra-alegre: 0 10px 0px rgba(0, 0, 0, 0.08);
+            --sombra-hover: 0 16px 0px rgba(0, 0, 0, 0.12);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,51 +33,110 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 22px;
+            font-family: 'Nunito', Arial, sans-serif;
+            font-size: 21px;
             line-height: 1.6;
-            color: #1a1a1a;
-            background-color: #ff9ac4;
-            padding: 20px;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            /* Fundo com gradiente e padrão geométrico embutido em SVG */
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(255, 183, 3, 0.25) 0%, transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(6, 214, 160, 0.25) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(255, 89, 100, 0.15) 0%, transparent 45%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffb703' fill-opacity='0.15'%3E%3Ccircle cx='20' cy='20' r='8'/%3E%3Cpolygon points='80,20 90,40 70,40'/%3E%3Crect x='15' y='75' width='12' height='12' rx='3' transform='rotate(15 21 81)'/%3E%3Cpath d='M70,80 Q 80,70 90,80 T 110,80' stroke='%23ff5964' stroke-width='4' stroke-opacity='0.15' fill='none'/%3E%3C/g%3E%3C/svg%3E");
+            padding: 30px 20px;
+            min-height: 100vh;
         }
 
         header {
-            background-color: #ff1088;
+            background: linear-gradient(135deg, var(--cor-primaria), #ff758f);
             color: #ffffff;
-            padding: 25px;
+            padding: 40px 25px;
             text-align: center;
-            border-radius: 12px;
-            margin-bottom: 30px;
+            border-radius: var(--raio-borda);
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 12px 25px rgba(255, 89, 100, 0.3);
+            border: 4px solid #ffffff;
+            overflow: hidden;
+        }
+
+        /* Formas geométricas decorativas no Header */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 90px;
+            height: 90px;
+            background-color: var(--cor-secundaria);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -10px;
+            width: 110px;
+            height: 110px;
+            background-color: var(--cor-verde);
+            transform: rotate(45deg);
+            border-radius: 20px;
+            opacity: 0.5;
         }
 
         h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 42px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
         }
 
         .subtitulo {
-            font-size: 24px;
+            font-size: 23px;
+            font-weight: 600;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
         }
 
         main {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
         }
 
         /* Estilo Base dos Cards da Página Inicial */
         .card-dica {
-            background-color: #ffffff;
-            border: 3px solid #ff1190;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
+            background-color: var(--cor-card-bg);
+            border: 4px solid #ffffff;
+            border-radius: var(--raio-borda);
+            padding: 32px;
+            margin-bottom: 30px;
             position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: var(--sombra-alegre);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Detalhe colorido no topo de cada card */
+        .card-dica::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30px;
+            right: 30px;
+            height: 6px;
+            background: linear-gradient(90deg, var(--cor-secundaria), var(--cor-primaria), var(--cor-verde));
+            border-radius: 0 0 10px 10px;
         }
 
         .card-dica:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: var(--sombra-hover);
         }
 
         .link-card {
@@ -71,26 +148,38 @@
 
         .link-saiba-mais {
             display: inline-block;
-            margin-top: 15px;
-            font-weight: bold;
-            color: #ff1088;
-            text-decoration: underline;
-            font-size: 22px;
+            margin-top: 18px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            color: var(--cor-terciaria);
+            background-color: #e8f4ff;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .card-dica:hover .link-saiba-mais {
+            background-color: var(--cor-terciaria);
+            color: #ffffff;
+            transform: translateX(5px);
         }
 
         h2 {
-            font-size: 28px;
-            color: #f71390;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 30px;
+            color: var(--cor-primaria);
             margin-bottom: 15px;
-            border-bottom: 2px solid #ff1573;
             padding-bottom: 8px;
+            border-bottom: 3px dashed #ffd166;
         }
 
         h3 {
-            font-size: 24px;
-            color: #d81b60;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 25px;
+            color: var(--cor-terciaria);
             margin-top: 25px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         ul, ol {
@@ -103,101 +192,129 @@
         }
 
         .destaque {
-            background-color: #fff3cd;
-            border-left: 6px solid #74f20c;
-            padding: 15px;
-            margin-top: 15px;
+            background-color: #fff3b0;
+            border-left: 8px solid var(--cor-secundaria);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
             font-size: 20px;
-            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(255, 183, 3, 0.2);
         }
 
         .botao-grande {
             display: block;
             width: 100%;
-            background-color: #2e7d32;
+            background: linear-gradient(135deg, var(--cor-verde), #05b383);
             color: #ffffff;
+            font-family: 'Fredoka', sans-serif;
             text-align: center;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
+            padding: 22px;
+            font-size: 25px;
+            font-weight: 700;
             text-decoration: none;
-            border: none;
-            border-radius: 12px;
+            border: 4px solid #ffffff;
+            border-radius: var(--raio-borda);
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
+            box-shadow: 0 8px 0px #04966e;
+            transition: all 0.2s ease;
         }
 
         .botao-grande:hover, .botao-grande:focus {
-            background-color: #1b5e20;
-            outline: 4px solid #ffbf00;
+            transform: translateY(-3px);
+            box-shadow: 0 11px 0px #04966e;
+            outline: none;
+        }
+
+        .botao-grande:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0px #04966e;
         }
 
         .btn-voltar {
             display: inline-block;
-            background-color: #ff1088;
+            background-color: var(--cor-primaria);
             color: #ffffff;
+            font-family: 'Fredoka', sans-serif;
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 0px #d63d47;
+            transition: all 0.2s ease;
         }
 
         .btn-voltar:hover {
-            background-color: #d81b60;
+            background-color: #ff3b47;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0px #d63d47;
         }
 
         /* Estilos das Ilustrações (SVG) */
         .container-figura {
             text-align: center;
-            margin: 25px 0;
-            background-color: #fff8fa;
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px dashed #ff9ac4;
+            margin: 30px 0;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: var(--raio-borda);
+            border: 3px dashed var(--cor-terciaria);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.04);
+            position: relative;
         }
 
         .container-figura svg {
             max-width: 100%;
             height: auto;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.08));
         }
 
         .legenda-figura {
-            font-size: 18px;
-            font-style: italic;
-            color: #555555;
-            margin-top: 10px;
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--cor-texto);
+            margin-top: 12px;
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
+            margin-top: 50px;
+            padding: 25px;
             font-size: 20px;
-            color: #4a4a4a;
+            font-weight: 600;
+            color: #6c757d;
         }
 
         /* ========================================== */
         /*   LÓGICA DAS PÁGINAS SECUNDÁRIAS (SPA CSS) */
         /* ========================================== */
 
-        /* Oculta as páginas secundárias por padrão */
         .pagina-secundaria {
             display: none;
-            background-color: #ffffff;
-            border: 4px solid #ff1088;
-            border-radius: 12px;
-            padding: 30px;
+            background-color: var(--cor-card-bg);
+            border: 4px solid #ffffff;
+            border-radius: var(--raio-borda);
+            padding: 35px;
             margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--sombra-hover);
+            animation: surgir 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Quando a página for chamada via link (ex: #organizacao) */
+        @keyframes surgir {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
         .pagina-secundaria:target {
             display: block;
         }
 
-        /* Oculta a listagem inicial e o topo quando uma página secundária estiver ativa */
         body:has(.pagina-secundaria:target) #pagina-inicial {
             display: none;
         }
@@ -213,7 +330,7 @@
     <main role="main">
 
         <!-- ======================================================== -->
-        /* PÁGINA INICIAL / LISTAGEM DOS CARDS */
+        <!-- PÁGINA INICIAL / LISTAGEM DOS CARDS -->
         <!-- ======================================================== -->
         <div id="pagina-inicial">
 
@@ -269,7 +386,7 @@
         </div>
 
         <!-- ======================================================== -->
-        /* PÁGINA SECUNDÁRIA 1: ORGANIZAÇÃO */
+        <!-- PÁGINA SECUNDÁRIA 1: ORGANIZAÇÃO -->
         <!-- ======================================================== -->
         <article class="pagina-secundaria" id="organizacao">
             <a href="#" class="btn-voltar">⬅️ Voltar à Página Principal</a>
@@ -306,7 +423,7 @@
         </article>
 
         <!-- ======================================================== -->
-        /* PÁGINA SECUNDÁRIA 2: SEGURANÇA */
+        <!-- PÁGINA SECUNDÁRIA 2: SEGURANÇA -->
         <!-- ======================================================== -->
         <article class="pagina-secundaria" id="seguranca">
             <a href="#" class="btn-voltar">⬅️ Voltar à Página Principal</a>
@@ -342,7 +459,7 @@
         </article>
 
         <!-- ======================================================== -->
-        /* PÁGINA SECUNDÁRIA 3: UTENSÍLIOS */
+        <!-- PÁGINA SECUNDÁRIA 3: UTENSÍLIOS -->
         <!-- ======================================================== -->
         <article class="pagina-secundaria" id="utensilios">
             <a href="#" class="btn-voltar">⬅️ Voltar à Página Principal</a>
@@ -380,7 +497,7 @@
     </main>
 
     <footer role="contentinfo">
-        <p>Receitas e Dicas Acessíveis — Feito para facilitar sua vida.</p>
+        <p>Receitas e Dicas Acessíveis — Feito para facilitar sua vida com alegria! ✨</p>
     </footer>
 
 </body>
